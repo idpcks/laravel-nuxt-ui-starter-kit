@@ -2,6 +2,7 @@
   import { formatTimeAgo, useFetch } from '@vueuse/core'
   import { useDashboard } from '../composables/useDashboard'
   import type { Notification } from '../types'
+  import { Link } from '@inertiajs/vue3'
 
   const { isNotificationsSlideoverOpen } = useDashboard()
 
@@ -11,7 +12,7 @@
 <template>
   <USlideover v-model:open="isNotificationsSlideoverOpen" title="Notifications">
     <template #body>
-      <RouterLink
+      <Link
         v-for="notification in notifications"
         :key="notification.id"
         :to="`/inbox?id=${notification.id}`"
@@ -32,7 +33,7 @@
             {{ notification.body }}
           </p>
         </div>
-      </RouterLink>
+      </Link>
     </template>
   </USlideover>
 </template>
